@@ -13,8 +13,8 @@ spec:
         app: angular-app
     spec:
       containers:
-      - name: my-angular-app
-        image: akdevopscoaching/mywebapp:latest
+      - name: angular-app
+        image: pavanreddy560/sampledemo1:docker-demo5
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
