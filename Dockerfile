@@ -1,4 +1,4 @@
 FROM lolhens/baseimage-openjre
-ADD **/*.jar springbootApp.jar
+ADD **/*.jar springbootApp.war
 EXPOSE 8085
-ENTRYPOINT ["java", "-jar", "springbootApp.jar"]
+ENTRYPOINT ["java", "-jar", "springbootApp.war"]
