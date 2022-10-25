@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: angular-app
-        image: pavanreddy560/sampledemo1:docker-demo5
+        image: 410738353879.dkr.ecr.ap-south-1.amazonaws.com/mydockerrepo:docker-demo4
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
