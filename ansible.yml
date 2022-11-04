@@ -1,0 +1,9 @@
+- name: Download an artifact from Nexus repository and deploy to tomcat server
+  community.general.maven_artifact:
+    group_id: com.company
+    artifact_id: library-name
+    extension: jar
+    repository_url: 'https://repo.company.com/maven'
+    username: user
+    password: pass
+    dest: /var/lib/tomcat7/webapps/web-app.jar
