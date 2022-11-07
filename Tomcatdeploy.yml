@@ -1,8 +1,5 @@
 -name:Install/Configure Tomcat9
-- hosts: all
-  become: true
-  become_method: sudo
-  become_user: root
+- hosts: webservers
 
 tasks:
     -name: Install tomcat9
