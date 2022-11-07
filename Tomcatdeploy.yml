@@ -1,19 +1,19 @@
--name:Install/Configure Tomcat9
-- hosts: webservers
+- name: Install/Configure Tomcat9
+  hosts: webservers
 
-tasks:
-    -name: Install tomcat9
+  tasks:
+   - name: Install tomcat9
      apt:
-      name: tomcat9
-      state: present
-    -name: Copy tomcat-users.xml file
-      copy:
-        src: /home/ubuntu/tomcat-users.xml
-        dst: /etc/tomcat9
-    -name: restart tomcat9
-      service:
-        name = tomcat9
-        state = restarted
-    -name: Check url response
-       uri:
-         url: http://13.233.225.30:8080
+       name: tomcat9
+       state: present
+   - name: Copy tomcat-users.xml file
+     copy:
+       src: /home/ubuntu/tomcat-users.xml
+       dst: /etc/tomcat9
+   - name: restart tomcat9
+     service:
+       name: tomcat9
+       state: restarted
+   - name: Check url response
+     uri:
+       url: http://3.109.124.30:8080
