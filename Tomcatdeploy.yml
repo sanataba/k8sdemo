@@ -1,5 +1,5 @@
 -name:Install/Configure Tomcat9
-hosts:all
+hosts:webservers
 
 tasks:
     -name: Install tomcat9
