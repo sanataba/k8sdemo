@@ -1,5 +1,7 @@
 -name:Install/Configure Tomcat9
-hosts: all
+- hosts: webservers
+  become: True
+
 tasks:
     -name: Install tomcat9
      apt:
