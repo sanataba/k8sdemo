@@ -1,19 +1,19 @@
 - name: Install/Configure Tomcat9
-  hosts: webservers
-
+  hosts: all
+  become: true
+  
   tasks:
-   - name: Install tomcat9
-     apt:
-       name: tomcat9
-       state: present
-   - name: Copy tomcat-users.xml file
-     copy:
-       src: /home/ubuntu/tomcat-users.xml
-       dst: /etc/tomcat9
-   - name: restart tomcat9
-     service:
-       name: tomcat9
-       state: restarted
-   - name: Check url response
-     uri:
-       url: http://3.109.124.30:8080
+  
+  - name: Download tomcat server packages
+    get_url:
+     url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.68/bin/apache-tomcat-9.0.68.tar.gz
+     dest: /usr/local
+
+  - name: Extract tomcat Packages
+    unarchive:
+      src: /usr/local/apache-tomcat-9.0.68.tar.gz
+      dest: /usr/local
+      remote_src: yes
+
+  - name: start tomcat services
+    shell: nohup /usr/local/apache-tomcat-9.0.68/bin/startup.sh
