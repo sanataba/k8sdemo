@@ -9,6 +9,13 @@
     <packaging>jar</packaging>
     <name>springbootApp</name>
     <description>SpringBoot Angularjs</description>
+
+    <distributionManagement>
+   <repository>
+      <id>nexus-release</id>
+      <url>http://13.232.127.233:8081/repository/simpleapp/</url>
+   </repository>
+  </distributionManagement>
  
     <parent>
         <groupId>org.springframework.boot</groupId>
