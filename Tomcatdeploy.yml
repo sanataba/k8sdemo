@@ -9,12 +9,7 @@
    - name: Download Tomcat
      get_url:
       url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.68/bin/apache-tomcat-9.0.68.tar.gz
-      dest: /tmp/
-   - name: 4) copy the file from TMP dir
-     copy:
-      src: /tmp/apache-tomcat-9.0.58.tar.gz
       dest: /usr/local/
-      remote_src: yes
    - name: 5) Install the Tomcat
      unarchive:
       src: /usr/local/apache-tomcat-9.0.58.tar.gz
