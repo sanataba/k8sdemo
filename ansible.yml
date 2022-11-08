@@ -10,6 +10,7 @@
       artifact_id: springbootApp
       extension: jar
       repository_url: 'http://13.232.127.233:8081/repository/simpleapp/'
+      version: "{{${mavenPom.version}}"
       username: admin
       password: admin123
       dest: /usr/local/apache-tomcat-9.0.68/webapps/
