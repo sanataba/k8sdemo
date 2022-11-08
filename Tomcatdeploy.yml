@@ -23,7 +23,7 @@
       recurse: yes
       state: directory
    - name: start tomcat services
-     shell: nohup /usr/local/apache-tomcat-9.0.44/bin/startup.sh
+     shell: nohup /usr/local/apache-tomcat-9.0.68/bin/startup.sh
    
          
 ...
