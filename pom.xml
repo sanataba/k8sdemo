@@ -13,7 +13,7 @@
     <distributionManagement>
    <repository>
       <id>nexus-release</id>
-      <url>http://13.232.127.233:8081/repository/simpleapp/</url>
+      <url>http://13.232.127.233:8081/#browse/browse:simpleapp</url>
    </repository>
   </distributionManagement>
  
