@@ -1,9 +1,11 @@
+---
 - name: Download an artifact from Nexus repository and deploy to tomcat server
   community.general.maven_artifact:
-    group_id: com.company
-    artifact_id: library-name
+    group_id: com.tcs.angularjs
+    artifact_id: springbootApp
     extension: jar
-    repository_url: 'https://repo.company.com/maven'
-    username: user
-    password: pass
-    dest: /var/lib/tomcat7/webapps/web-app.jar
+    repository_url: 'http://13.232.127.233:8081/#browse/browse:simpleapp'
+    username: admin
+    password: admin123
+    dest: /usr/local/apache-tomcat-9.0.68/webapps/springbootApp-${mavenPom.version}.jar
+---
