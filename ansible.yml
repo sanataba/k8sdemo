@@ -13,4 +13,4 @@
       version: "${mavenPom.version}"
       username: admin
       password: admin123
-      dest: /usr/local/apache-tomcat-9.0.68/webapps/springbootApp-${mavenPom.version}.jar
+      dest: /usr/local/apache-tomcat-9.0.68/webapps/
