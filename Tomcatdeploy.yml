@@ -22,49 +22,7 @@
       group: tomcat
       recurse: yes
       state: directory
-   - name: 7) Make the Tomcat file symbollic
-     file:
-      src: /usr/local/apache-tomcat-9.0.68
-      dest: /usr/local/tomcat9
-      owner: tomcat
-      group: tomcat
-      state: link
-   - name: 8) Create the tomcat.service file
-     file:
-      path: /etc/systemd/system/tomcat.service
-      state: touch
-   - name: 9) Edit the tomcat.service
-     blockinfile:
-        dest: /etc/systemd/system/tomcat.service
-        insertafter:
-        block: |
-          [Unit]
-          Description = Apache Tomcat 9
-          After = network.target
-          [Service]
-          User = tomcat
-          Group = tomcat
-          Environment = "/usr/lib/jvm/java-1.11.0-openjdk-amd64"
-          Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom"
-          Environment="CATALINA_BASE=/opt/tomcat"
-          Environment="CATALINA_HOME=/opt/tomcat"
-          Environment="CATALINA_PID=/opt/tomcat/temp/tomcat.pid"
-          Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
-          ExecStart =/usr/local/apache-tomcat-9.0.68/bin/startup.sh
-          ExecStop =/usr/local/apache-tomcat-9.0.68/bin/shutdown.sh
-          ExecReStart =/usr/local/apache-tomcat-9.0.68/bin/shutdown.sh;/usr/local/apache-tomcat-9.0.58/bin/startup.sh
-          [Install]
-          WantedBy = multi-user.target
-   - name: 10) chmod 755 tomcat.service
-     file:
-      path: /etc/systemd/system/tomcat.service
-      mode: 0755
-   - name: 11) Start the Tomcat
-     systemd:
-      name: tomcat.service
-      state: started
-      daemon_reload: true
-      enabled: true
-   
+   - name: start tomcat services
+    shell: nohup /usr/local/apache-tomcat-9.0.68/bin/startup.sh
          
 ...
