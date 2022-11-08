@@ -12,19 +12,19 @@
       dest: /usr/local/
    - name: 5) Install the Tomcat
      unarchive:
-      src: /usr/local/apache-tomcat-9.0.58.tar.gz
+      src: /usr/local/apache-tomcat-9.0.68.tar.gz
       dest: /usr/local/
       remote_src: yes
    - name: 6) Changing the Tomcat File Ownership, Group and Permissions
      file:
-      path: /usr/local/apache-tomcat-9.0.58
+      path: /usr/local/apache-tomcat-9.0.68
       owner: tomcat
       group: tomcat
       recurse: yes
       state: directory
    - name: 7) Make the Tomcat file symbollic
      file:
-      src: /usr/local/apache-tomcat-9.0.58
+      src: /usr/local/apache-tomcat-9.0.68
       dest: /usr/local/tomcat9
       owner: tomcat
       group: tomcat
@@ -50,9 +50,9 @@
           Environment="CATALINA_HOME=/opt/tomcat"
           Environment="CATALINA_PID=/opt/tomcat/temp/tomcat.pid"
           Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
-          ExecStart =/usr/local/apache-tomcat-9.0.58/bin/startup.sh
-          ExecStop =/usr/local/apache-tomcat-9.0.58/bin/shutdown.sh
-          ExecReStart =/usr/local/apache-tomcat-9.0.58/bin/shutdown.sh;/usr/local/apache-tomcat-9.0.58/bin/startup.sh
+          ExecStart =/usr/local/apache-tomcat-9.0.68/bin/startup.sh
+          ExecStop =/usr/local/apache-tomcat-9.0.68/bin/shutdown.sh
+          ExecReStart =/usr/local/apache-tomcat-9.0.68/bin/shutdown.sh;/usr/local/apache-tomcat-9.0.58/bin/startup.sh
           [Install]
           WantedBy = multi-user.target
    - name: 10) chmod 755 tomcat.service
