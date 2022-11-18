@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-ak-deployment
+  name: my-k8-deployment
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: angular-app
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: angular-app
-        image: 410738353879.dkr.ecr.ap-south-1.amazonaws.com/mydockerrepo:3.0
+        image: 296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
