@@ -26,6 +26,12 @@ pipeline {
 		    }
 	    }
         
+	    stage('Quality Gates for CodeSmells'){
+		    steps{
+			waitForQualityGate abortPipeline: true
+		    }
+	    }
+	    
         stage('NexusArtifactUploader'){
             steps{
                 nexusArtifactUploader artifacts: [
@@ -71,7 +77,6 @@ pipeline {
                 script{
                     withKubeConfig([credentialsId: 'K8', serverUrl: '']) 
                     {
-                    sh ('kubectl rollout status deployment my-k8-deployment')
 		    sh ('kubectl apply -f  deployment.yml')
                     }
                   }
