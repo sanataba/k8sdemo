@@ -71,7 +71,8 @@ pipeline {
                 script{
                     withKubeConfig([credentialsId: 'K8', serverUrl: '']) 
                     {
-                    sh ('kubectl apply -f  deployment.yml')
+                    sh ('kubectl rollout status deployment my-k8-deployment')
+		    sh ('kubectl apply -f  deployment.yml')
                     }
                   }
                 }    
