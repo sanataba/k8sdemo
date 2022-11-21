@@ -25,13 +25,13 @@ pipeline {
 		       }   
 		    }
 	    }
-        
+/*        
 	    stage('Quality Gates for CodeSmells'){
 		    steps{
 			waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube'
 		    }
 	    }
-	    
+*/	    
         stage('NexusArtifactUploader'){
             steps{
                 nexusArtifactUploader artifacts: [
@@ -54,9 +54,9 @@ pipeline {
         
         stage('Docker Build, Image List and Tag'){
             steps{
-                sh 'docker build -t kpdocker .'
+                sh 'docker build -t kpdocker:$BUILD_NUMBER .'
                 sh 'docker image list '
-                sh 'docker tag kpdocker:latest 296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:latest'
+                sh 'docker tag kpdocker:latest 296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:$BUILD_NUMBER'
             }
         }
             
@@ -68,7 +68,7 @@ pipeline {
     
         stage('DockerPush to AWS ECR'){
             steps{
-                sh 'docker push 296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:latest'
+                sh 'docker push 296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:$BUILD_NUMBER'
             }
         }   
 
@@ -77,7 +77,9 @@ pipeline {
                 script{
                     withKubeConfig([credentialsId: 'K8', serverUrl: '']) 
                     {
-		    sh ('kubectl apply -f  deployment.yml')
+		        sh 'chmod +x changeTag.sh'
+			sh './changeTag.sh $BUILD_NUMBER'
+			sh 'kubectl apply -f  deployment.yml'
                     }
                   }
                 }    
