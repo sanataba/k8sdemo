@@ -25,13 +25,13 @@ pipeline {
 		       }   
 		    }
 	    }
-/*        
+        
 	    stage('Quality Gates for CodeSmells'){
 		    steps{
 			waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube'
 		    }
 	    }
-*/	    
+	    
         stage('NexusArtifactUploader'){
             steps{
                 nexusArtifactUploader artifacts: [
