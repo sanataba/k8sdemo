@@ -28,7 +28,7 @@ pipeline {
         
 	    stage('Quality Gates for CodeSmells'){
 		    steps{
-			waitForQualityGate abortPipeline: true
+			waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube'
 		    }
 	    }
 	    
