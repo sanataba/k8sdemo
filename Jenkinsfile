@@ -3,7 +3,7 @@ pipeline {
 	
 	environment {
 	     registry = "296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker"
-	}
+	 }
 	
     tools {
         maven "M3"
