@@ -1,15 +1,10 @@
 pipeline {
     agent any
-/*	
-	environment {
-	     registry = "296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker"
-	 }
-*/	
+	
     tools {
         maven "M3"
      }
-    
-	
+
     stages {
         stage('GIT Checkout') {
             steps {
@@ -23,6 +18,7 @@ pipeline {
             }
         }
         
+/*
 	    stage('ExecuteSonarQubeReport'){
 		    steps{
 	    	  withSonarQubeEnv('sonarqube8.9'){
@@ -30,15 +26,14 @@ pipeline {
 		       }   
 		    }
 	    }
-  /*
+ */ 
  
 	    stage('Quality Gates for CodeSmells'){
 		    steps{
 			waitForQualityGate abortPipeline: true, credentialsId: 'sonarqube'
 		    }
 	    }
-	
- */	
+	    
         stage('NexusArtifactUploader'){
             steps{
                 nexusArtifactUploader artifacts: [
@@ -58,17 +53,15 @@ pipeline {
                     version: '1.0.0'
             }
         }
-   
+        
         stage('Docker Build, Image List and Tag'){
             steps{
-                sh 'docker build -t kpdocker:1 .'
+                sh 'docker build -t kpdocker:$BUILD_NUMBER .'
                 sh 'docker image list '
-                sh 'docker tag kpdocker:1 296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:1'
+                sh 'docker tag kpdocker:latest 296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:$BUILD_NUMBER'
             }
         }
-	    
-	    
-	    
+            
         stage('AWS Login'){
             steps{
                 sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 296475210819.dkr.ecr.ap-south-1.amazonaws.com'
@@ -77,7 +70,7 @@ pipeline {
     
         stage('DockerPush to AWS ECR'){
             steps{
-                sh 'docker push 296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:1'
+                sh 'docker push 296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:$BUILD_NUMBER'
             }
         }   
 
@@ -86,13 +79,12 @@ pipeline {
                 script{
                     withKubeConfig([credentialsId: 'K8', serverUrl: '']) 
                     {
-//		        sh 'chmod +x changeTag.sh'
-//			sh './changeTag.sh $BUILD_NUMBER'
+		        sh 'chmod +x changeTag.sh'
+			sh './changeTag.sh $BUILD_NUMBER'
 			sh 'kubectl apply -f  deployment.yml'
                     }
                   }
                 }    
               }  
-	      
     }
 }
