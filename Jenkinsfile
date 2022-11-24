@@ -59,7 +59,7 @@ pipeline {
             steps{
                 sh 'docker build -t kpdocker:$BUILD_NUMBER .'
                 sh 'docker image list '
-                sh 'docker tag kpdocker:latest 296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:$BUILD_NUMBER'
+                sh 'docker tag kpdocker:$BUILD_NUMBER 296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:$BUILD_NUMBER'
             }
         }
             
