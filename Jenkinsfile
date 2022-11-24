@@ -1,10 +1,10 @@
 pipeline {
     agent any
-	
+/*	
 	environment {
 	     registry = "296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker"
 	 }
-	
+*/	
     tools {
         maven "M3"
      }
@@ -59,22 +59,13 @@ pipeline {
             }
         }
    
-/*
         stage('Docker Build, Image List and Tag'){
             steps{
-                sh 'docker build -t kpdocker:$BUILD_NUMBER .'
+                sh 'docker build -t kpdocker:1 .'
                 sh 'docker image list '
-                sh 'docker tag kpdocker:latest 296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:$BUILD_NUMBER'
+                sh 'docker tag kpdocker:1 296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:1'
             }
         }
-*/
-	    stage('Docker Build'){
-		steps{
-		  script{
-			  dockerImage = docker.build registry:1
-			}
-		    }
-	         }
 	    
 	    
 	    
