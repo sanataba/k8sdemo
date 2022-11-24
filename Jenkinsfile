@@ -18,14 +18,16 @@ pipeline {
             }
         }
         
-        stage('ExecuteSonarQubeReport'){
+/*
+	    stage('ExecuteSonarQubeReport'){
 		    steps{
 	    	  withSonarQubeEnv('sonarqube8.9'){
 			    sh 'mvn sonar:sonar'
 		       }   
 		    }
 	    }
-        
+ */ 
+ 
 	    stage('Quality Gates for CodeSmells'){
 		    steps{
 			waitForQualityGate abortPipeline: true, credentialsId: 'sonarqube'
