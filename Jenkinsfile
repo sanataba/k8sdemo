@@ -86,7 +86,7 @@ pipeline {
     
         stage('DockerPush to AWS ECR'){
             steps{
-                sh 'docker push 296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:latest'
+                sh 'docker push 296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:1'
             }
         }   
 
