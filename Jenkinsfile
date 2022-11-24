@@ -10,7 +10,7 @@ pipeline {
             steps {
             git 'https://github.com/KP-Devops/k8sdemo.git'
             }
-          }
+           }
           
         stage('Maven Build') {
             steps {
