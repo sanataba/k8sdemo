@@ -18,7 +18,7 @@ pipeline {
             }
         }
         
-/*
+
 	    stage('ExecuteSonarQubeReport'){
 		    steps{
 	    	  withSonarQubeEnv('sonarqube8.9'){
@@ -26,13 +26,14 @@ pipeline {
 		       }   
 		    }
 	    }
- */ 
- 
+  
+ /*
 	    stage('Quality Gates for CodeSmells'){
 		    steps{
 			waitForQualityGate abortPipeline: true, credentialsId: 'sonarqube'
 		    }
 	    }
+*/
 	    
         stage('NexusArtifactUploader'){
             steps{
