@@ -76,7 +76,7 @@ pipeline {
 		    }
 	         }
 	    
-/*	    
+	    
 	    
         stage('AWS Login'){
             steps{
@@ -89,7 +89,7 @@ pipeline {
                 sh 'docker push 296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:latest'
             }
         }   
-
+/*
         stage('EKS Deployment'){
             steps{
                 script{
