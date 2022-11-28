@@ -27,13 +27,14 @@ pipeline {
 		    }
 	    }
   
- 
+/* 
 	    stage('Quality Gates for CodeSmells'){
 		    steps{
 			waitForQualityGate abortPipeline: true 
 		    }
 	    }
 
+*/
 	    
         stage('NexusArtifactUploader'){
             steps{
