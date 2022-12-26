@@ -13,11 +13,13 @@ spec:
         app: angular-app
     spec:
       containers:
-      - name: angular-app
+      - name: angular-app123
         image: 706274417810.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:tagVersion
         imagePullPolicy: Always
         ports:
-        - containerPort: 8085
+        - containerPort: 8090
+          name: http
+          protocol: TCP
 # service type loadbalancer
 ---
 apiVersion: v1
@@ -28,7 +30,8 @@ spec:
   selector:
     app: angular-app
   ports:
-    - protocol: TCP
-      port: 8085
-      targetPort: 8085
+    - name: http
+      protocol: TCP
+      port: 8090
+      targetPort: 8090
   type: LoadBalancer
