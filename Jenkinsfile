@@ -48,7 +48,7 @@ pipeline {
 		        sh 'chmod +x changeTag.sh'
 			sh './changeTag.sh $BUILD_NUMBER'
 //			sh 'kubectl delete --all pods'
-			sh 'kubectl apply -f  Deployment.yml'
+			sh 'kubectl apply -f  deployment.yml'
                     }
                   }
                 }    
