@@ -3,7 +3,7 @@ pipeline {
         label 'new123'
     }
     environment {
-        registry = "706274417810.dkr.ecr.ap-south-1.amazonaws.com/springboot"
+        registry = "706274417810.dkr.ecr.ap-south-1.amazonaws.com/kpdocker"
     }
     
 	   
@@ -36,7 +36,7 @@ pipeline {
       } 
          stage('DockerPush to AWS ECR'){
             steps{
-                sh 'docker push 706274417810.dkr.ecr.ap-south-1.amazonaws.com/springboot:latest'
+                sh 'docker push 706274417810.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:latest'
             }
         } 
 
