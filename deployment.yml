@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: angular-app
-        image: 296475210819.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:tagVersion
+        image: 706274417810.dkr.ecr.ap-south-1.amazonaws.com/kpdocker:tagVersion
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
